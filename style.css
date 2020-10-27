@@ -1,0 +1,42 @@
+@font-face {
+	font-family: dancing;
+	src: url(dancing.ttf);
+}
+h1 {
+  color: hsl(5, 54%, 84%);
+  text-align:center;
+  font-size: 60px;
+ }
+ 
+.myfirstclass {
+  color: green;
+  text-align:center;
+   font-size: 40px; 
+   border-style: ridge;
+   border-radius: 15px;
+ }
+ 
+#myfirstid {
+  color: yellow;
+  text-align: center;
+  text-decoration: underline;
+  text-transform: lowercase;
+  letter-spacing: -3px;
+  text-shadow: 5px 5px 3px red;
+  word-spacing: 30px;
+  line-height: 200px;
+  font-size: 40px;
+  background-image: url(gradient-small.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: scroll;
+  font-family:'Dancing Script', cursive;
+  }
+  .border-test {
+	  border-style:dotted;
+	  font-family: dancing;
+	  font-size:24px;
+  }
+  
+  * {
+  font-weight:300; }

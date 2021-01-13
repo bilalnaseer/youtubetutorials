@@ -1,4 +1,4 @@
-At the bottom of the file, paste the following code:
+At bottom of the product.liquid file, paste the following code:
 
 {% if product.options.size == 1 %}
   <script>
@@ -25,7 +25,7 @@ At the bottom of the file, paste the following code:
 {% endif %}
 
 
-If you use a free theme from Shopify, other than Brooklyn or Narrative, then at the bottom of the file, paste the following code:
+If you use a free theme from Shopify, other than Brooklyn or Narrative, then at the bottom of the theme.js file, paste the following code:
 
 $( document ).ready(function() {
   if( typeof product_variants_removed != undefined ) {  // was there items to be removed?
@@ -47,7 +47,7 @@ $( document ).ready(function() {
   }
 });
 
-If you use Brooklyn, then at the bottom of the file paste the following code:
+If you use Brooklyn, then at the bottom of the theme.js file paste the following code:
 
 $( document ).ready(function() {
   $('single-option-selector__radio').trigger('change');

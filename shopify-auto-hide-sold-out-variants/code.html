@@ -1,0 +1,88 @@
+At the bottom of the file, paste the following code:
+
+{% if product.options.size == 1 %}
+  <script>
+    var product_variants_removed = [
+      {%- for variant in product.variants -%}
+        {%- unless variant.available -%}
+          `{{ variant.title }}`,
+        {%- endunless -%}
+      {%- endfor -%}
+    ];
+  </script>
+{% endif %}
+
+{% if product.options.colour == 1 %}
+  <script>
+    var product_variants_removed = [
+      {%- for variant in product.variants -%}
+        {%- unless variant.available -%}
+          `{{ variant.title }}`,
+        {%- endunless -%}
+      {%- endfor -%}
+    ];
+  </script>
+{% endif %}
+
+
+If you use a free theme from Shopify, other than Brooklyn or Narrative, then at the bottom of the file, paste the following code:
+
+$( document ).ready(function() {
+  if( typeof product_variants_removed != undefined ) {  // was there items to be removed?
+    var $addToCartForm = $('form[action="/cart/add"]');
+    if (window.MutationObserver && $addToCartForm.length) {
+      if (typeof observer === 'object' && typeof observer.disconnect === 'function') {
+        observer.disconnect();
+      }
+      var config = { childList: true, subtree: true };
+      var observer = new MutationObserver(function() {
+        product_variants_removed.forEach(function(item){
+          $('.single-option-selector option').filter(function() { return $(this).text() === item; }).remove();
+        });
+        observer.disconnect();
+      });  
+      observer.observe($addToCartForm[0], config);
+      $('.single-option-selector').trigger('change');
+    }
+  }
+});
+
+If you use Brooklyn, then at the bottom of the file paste the following code:
+
+$( document ).ready(function() {
+  $('single-option-selector__radio').trigger('change');
+  if( typeof product_variants_removed != undefined ) {  // was there items to be removed?
+    var $addToCartForm = $('form[action="/cart/add"]');
+    if (window.MutationObserver && $addToCartForm.length) {
+      if (typeof observer === 'object' && typeof observer.disconnect === 'function') {
+        observer.disconnect();
+      }
+      var config = { childList: true, subtree: true };
+      var observer = new MutationObserver(function() {
+        product_variants_removed.forEach(function(item){
+              $('#ProductSelect-option-size-'+item).remove();
+          $('label[for=ProductSelect-option-size-'+item+']').remove();
+        });
+        observer.disconnect();
+      });  
+      observer.observe($addToCartForm[0], config);
+      $('.single-option-selector__radio').trigger('change');     
+    }
+  }
+});
+
+If you use Narrative, then at the bottom of the custom.js file paste the following code:
+
+$( document ).ready(function() {
+  if( typeof product_variants_removed != undefined ) {  // was there items to be removed?
+    var $addToCartForm = $('form[action="/cart/add"]');
+    if (window.MutationObserver && $addToCartForm.length) {
+    var config = { childList: true, subtree: true };
+        product_variants_removed.forEach(function(item){
+          $('.single-option-selector option').filter(function() { return $(this).text() === item; }).remove();
+        });    
+    }
+  }
+}
+);
+Click Save.
